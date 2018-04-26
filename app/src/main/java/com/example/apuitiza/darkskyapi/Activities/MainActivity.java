@@ -3,8 +3,10 @@ package com.example.apuitiza.darkskyapi.Activities;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.apuitiza.darkskyapi.Events.ClimaEvent;
+import com.example.apuitiza.darkskyapi.Events.ErrorEvent;
 import com.example.apuitiza.darkskyapi.Models.Currently;
 import com.example.apuitiza.darkskyapi.R;
 import com.example.apuitiza.darkskyapi.Services.ClimaServiceProvider;
@@ -45,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
         Currently currently = event.getClima().getCurrently();
         String centigradosTemp = String.valueOf(Math.round(currently.getTemperature()));
         tempTxtView.setText(centigradosTemp);
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onErrorEvent(ErrorEvent event) {
+        Toast.makeText(this,event.getTxtError(),Toast.LENGTH_LONG).show();
     }
 
     private void requestClimaActual(double lat, double lng) {

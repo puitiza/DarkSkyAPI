@@ -1,8 +1,10 @@
 package com.example.apuitiza.darkskyapi.Services;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.apuitiza.darkskyapi.Events.ClimaEvent;
+import com.example.apuitiza.darkskyapi.Events.ErrorEvent;
 import com.example.apuitiza.darkskyapi.Models.Clima;
 import com.example.apuitiza.darkskyapi.Models.Currently;
 
@@ -37,16 +39,21 @@ public class ClimaServiceProvider {
         climaData.enqueue(new Callback<Clima>() {
             @Override
             public void onResponse(Call<Clima> call, Response<Clima> response) {
-                Clima clima = response.body();
-                Currently currently = clima.getCurrently();
-                Log.e(TAG,"Temperatura = "+currently.getTemperature());
-                EventBus.getDefault().post(new ClimaEvent(clima));
+                if(response.body() != null){
+                    Clima clima = response.body();
+                    Currently currently = clima.getCurrently();
+                    Log.e(TAG,"Temperatura = "+currently.getTemperature());
+                    EventBus.getDefault().post(new ClimaEvent(clima));
+                }else{
+                    EventBus.getDefault().post(new ErrorEvent("No hay informacion del clima disponible"));
+                }
+
             }
 
             @Override
             public void onFailure(Call<Clima> call, Throwable t) {
                 Log.e(TAG,"No esta disponible la información");
-
+                EventBus.getDefault().post(new ErrorEvent("No esta disponible la informacion"));
             }
         });
     }
