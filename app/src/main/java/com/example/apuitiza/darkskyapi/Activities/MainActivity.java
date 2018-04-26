@@ -1,25 +1,17 @@
-package com.example.apuitiza.darkskyapi;
+package com.example.apuitiza.darkskyapi.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.apuitiza.darkskyapi.Events.ClimaEvent;
-import com.example.apuitiza.darkskyapi.Models.Clima;
 import com.example.apuitiza.darkskyapi.Models.Currently;
-import com.example.apuitiza.darkskyapi.Services.ClimaService;
+import com.example.apuitiza.darkskyapi.R;
 import com.example.apuitiza.darkskyapi.Services.ClimaServiceProvider;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 

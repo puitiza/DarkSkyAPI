@@ -3,7 +3,6 @@ package com.example.apuitiza.darkskyapi.Services;
 import android.util.Log;
 
 import com.example.apuitiza.darkskyapi.Events.ClimaEvent;
-import com.example.apuitiza.darkskyapi.MainActivity;
 import com.example.apuitiza.darkskyapi.Models.Clima;
 import com.example.apuitiza.darkskyapi.Models.Currently;
 
