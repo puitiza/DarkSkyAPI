@@ -44,7 +44,8 @@ public class Currently {
     }
 
     public Double getTemperature() {
-        return temperature;
+        Double celciusTemp = (temperature-32)*5/9;
+        return celciusTemp;
     }
 
     public void setTemperature(Double temperature) {

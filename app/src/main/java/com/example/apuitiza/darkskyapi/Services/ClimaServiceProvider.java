@@ -2,9 +2,12 @@ package com.example.apuitiza.darkskyapi.Services;
 
 import android.util.Log;
 
+import com.example.apuitiza.darkskyapi.Events.ClimaEvent;
 import com.example.apuitiza.darkskyapi.MainActivity;
 import com.example.apuitiza.darkskyapi.Models.Clima;
 import com.example.apuitiza.darkskyapi.Models.Currently;
+
+import org.greenrobot.eventbus.EventBus;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,8 +38,10 @@ public class ClimaServiceProvider {
         climaData.enqueue(new Callback<Clima>() {
             @Override
             public void onResponse(Call<Clima> call, Response<Clima> response) {
-                Currently currently = response.body().getCurrently();
+                Clima clima = response.body();
+                Currently currently = clima.getCurrently();
                 Log.e(TAG,"Temperatura = "+currently.getTemperature());
+                EventBus.getDefault().post(new ClimaEvent(clima));
             }
 
             @Override
