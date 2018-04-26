@@ -16,6 +16,7 @@ public class ClimaServiceProvider {
 
     private static  final String TAG = ClimaServiceProvider.class.getSimpleName();
     private Retrofit retrofit;
+    //Un consejo asegurate que al final de la URL este el (/)
     private static final String BASE_URL = "https://api.darksky.net/forecast/e80b2218b6e487a5c034ffa09343f10c/";
 
     private Retrofit getRetrofit(){
